@@ -7,10 +7,8 @@
         public function prefigs($route, $function, $method) {
 
             $htaccess = file_get_contents(".htaccess"); //Read .htaccess
-            
-            $route = preg_replace("/^\/+/", "", $route);
 
-            preg_match_all("/\{[a-zA-Z0-9]+\}/", $route, $match_array); //match named parameters e.g. {userid}
+            preg_match_all("/\{[a-zA-Z0-9_]+\}/", $route, $match_array); //match named parameters e.g. {userid}
 
             $matches = $match_array[0]; //matches array
 
