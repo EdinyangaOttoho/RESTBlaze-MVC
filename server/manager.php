@@ -4,7 +4,7 @@
         public function __construct() {
             file_put_contents(".htaccess", "RewriteEngine On");
         }
-        public static function get($route, $function) {
+        static function get($route, $function) {
             $htaccess = file_get_contents(".htaccess");
             $route = preg_replace("/^\/+/", "", $route);
             preg_match_all("/\{[a-zA-Z0-9]+\}/", $route, $match_array);
@@ -25,7 +25,7 @@
                 file_put_contents(".htaccess", $htaccess."\nRewriteRule $route /server/main.php?restblaze_func=$function&restblaze_method=get&restblaze_opts=$opts [QSA,L]");
             }
         }
-        public static function post($route, $function) {
+        static function post($route, $function) {
             $htaccess = file_get_contents(".htaccess");
             $route = preg_replace("/^\/+/", "", $route);
             preg_match_all("/\{[a-zA-Z0-9]+\}/", $route, $match_array);
