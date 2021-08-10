@@ -53,7 +53,7 @@
     $db = new Database();
     $env = new Env();
 
-    class Data {
+    class RESTBlaze {
         public static function view($name, $data=[]) {
             $name = str_replace(".", "/", $name);
             include("../views/".$name.".php");

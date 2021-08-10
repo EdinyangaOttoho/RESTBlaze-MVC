@@ -1,5 +1,5 @@
 <?php
-    class Controller extends Data {
+    class Controller extends RESTBlaze {
         public function init() {
             $this->view("main");
         }
