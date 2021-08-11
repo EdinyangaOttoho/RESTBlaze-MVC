@@ -22,7 +22,7 @@
                 array_push($m, "$$cnt");
             }
 
-            $opts = implode(",", $m); //join params via comma
+            $opts = implode("<--!RB!-->", $m); //join params via special chars
 
             /* Htaccess rewrite block
                 Redirect params to request handler

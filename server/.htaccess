@@ -1,0 +1,2 @@
+RewriteEngine On
+RewriteRule /? /server/main.php?restblaze_func=Controller@init&restblaze_method=get&restblaze_opts= [QSA,L]
