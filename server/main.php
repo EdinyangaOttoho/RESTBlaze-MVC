@@ -38,6 +38,14 @@
 
     include("./dotenv.php");
 
+    class DBUnmatchedParams extends Exception {
+        public function getErrorMessage() {
+            //error message
+            $errorMsg = 'Error on line '.$this->getLine().' in '.$this->getFile()
+            .': '.$this->getMessage();
+            return $errorMsg;
+        }
+    }
     class InvalidRedirectPointer extends Exception {
         public function getErrorMessage() {
             //error message
@@ -72,12 +80,38 @@
     }
 
     class Database {
+        public $query;
+        public $db;
         public function __construct() {
             $env = new Env();
             $this->db = mysqli_connect($env->MYSQLI_HOST, $env->MYSQLI_USER, $env->MYSQLI_PASSWORD, $env->MYSQLI_DATABASE);
             return $this->db;
         }
-        public function query($str) {
+        public function query($str, $params=[]) {
+            function buildquery($x, $y, $db) {
+                $x = str_replace("'", "", $x);
+                preg_match_all("/\?/", $x, $matches);
+                $count = count($matches[0]);
+                if (count($y) != $count) {
+                    throw new DBUnmatchedParams("The parameters for query do not match the number of placeholders!");
+                }
+                else {
+                    $cnt = 0;
+                    while (strpos($x, "?") !== false) {
+                        $index = strpos($x, "?");
+                        
+                        $start = substr($x, 0, $index)."'";
+                        $mid = mysqli_real_escape_string($db, $y[$cnt]);
+                        $end = "'".substr($x, $index+1, strlen($x)-$index);
+
+                        $complete = $start.$mid.$end;
+                        $x = $complete;
+                        $cnt++;
+                    }
+                }
+                return $x;
+            }
+            $str = buildquery($str, $params, $this->db);
             $this->query = mysqli_query($this->db, $str);
             return $this->query;
         }
