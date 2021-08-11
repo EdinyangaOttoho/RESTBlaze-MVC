@@ -1,6 +1,6 @@
 <?php
 
-    file_put_contents("./.htaccess", "RewriteEngine On");
+    file_put_contents("/.htaccess", "RewriteEngine On");
 
     $named_routes = [];
     $unnamed_routes = [];

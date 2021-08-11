@@ -6,7 +6,7 @@
     class Router {
         public function prefigs($route, $function, $method, $name=0) {
 
-            $htaccess = file_get_contents(".htaccess"); //Read .htaccess
+            $htaccess = file_get_contents("/.htaccess"); //Read .htaccess
 
             $route = preg_replace("/^\//", "", $route);
 
@@ -32,11 +32,11 @@
             if ($route == "" || $route == "/") {
                 $route = "/";
                 //entry (main) route?
-                file_put_contents(".htaccess", $htaccess." \nRewriteRule ^$ /server/main.php?restblaze_func=$function&restblaze_method=$method&restblaze_opts=$opts [QSA,L]");
+                file_put_contents("/.htaccess", $htaccess." \nRewriteRule ^$ /server/main.php?restblaze_func=$function&restblaze_method=$method&restblaze_opts=$opts [QSA,L]");
             }
             else {
                 //Other routes
-                file_put_contents(".htaccess", $htaccess."\nRewriteRule $route /server/main.php?restblaze_func=$function&restblaze_method=$method&restblaze_opts=$opts [QSA,L]");
+                file_put_contents("/.htaccess", $htaccess."\nRewriteRule $route /server/main.php?restblaze_func=$function&restblaze_method=$method&restblaze_opts=$opts [QSA,L]");
             }
             if ($name !== 0) {
                 global $named_routes;
