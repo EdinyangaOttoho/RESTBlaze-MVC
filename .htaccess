@@ -1,2 +1,4 @@
 RewriteEngine On 
 RewriteRule ^$ /server/main.php?restblaze_func=Controller@init&restblaze_method=get&restblaze_opts= [QSA,L]
+RewriteRule users/main /server/main.php?restblaze_func=Controller@users&restblaze_method=get&restblaze_opts= [QSA,L]
+RewriteRule users/delete /server/main.php?restblaze_func=Controller@delete&restblaze_method=get&restblaze_opts= [QSA,L]

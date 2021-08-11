@@ -4,5 +4,5 @@
     <Welcome! Declare all routes here>
     ----------------------------------
     */
-    $router::get("/", "Controller@init");
+    $router::get("/", "Controller@init", "index");
 ?>
