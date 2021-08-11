@@ -34,6 +34,14 @@
 
         include("./dotenv.php");
 
+        class ViewNotFound extends Exception {
+            public function getErrorMessage() {
+                //error message
+                $errorMsg = 'Error on line '.$this->getLine().' in '.$this->getFile()
+                .': '.$this->getMessage();
+                return $errorMsg;
+            }
+        }
         class InvalidControllerMethod extends Exception {
             public function getErrorMessage() {
                 //error message
@@ -78,9 +86,16 @@
         $env = new Env();
 
         class RESTBlaze {
-            public static function view($name, $data=[]) {
+            public function view($name, $data=[]) {
                 $name = str_replace(".", "/", $name);
-                include("../views/".$name.".php"); //Fit/format view directory
+                $directory = "../views/".$name.".php"; //Fit/format view directory
+                if (!file_exists($directory)) {
+                    throw new ViewNotFound("File or directory not found for view!");
+                }
+                include($directory); //Include view and pass data
+            }
+            public function redirect($route) {
+                header("Location:".$route); //redirect to route
             }
         }
 
