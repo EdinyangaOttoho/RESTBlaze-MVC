@@ -36,46 +36,7 @@
 
     include("./dotenv.php");
 
-    class DBUnmatchedParams extends Exception {
-        public function getErrorMessage() {
-            //error message
-            $errorMsg = 'Error on line '.$this->getLine().' in '.$this->getFile()
-            .': '.$this->getMessage();
-            return $errorMsg;
-        }
-    }
-    class InvalidRedirectPointer extends Exception {
-        public function getErrorMessage() {
-            //error message
-            $errorMsg = 'Error on line '.$this->getLine().' in '.$this->getFile()
-            .': '.$this->getMessage();
-            return $errorMsg;
-        }
-    }
-    class ViewNotFound extends Exception {
-        public function getErrorMessage() {
-            //error message
-            $errorMsg = 'Error on line '.$this->getLine().' in '.$this->getFile()
-            .': '.$this->getMessage();
-            return $errorMsg;
-        }
-    }
-    class InvalidControllerMethod extends Exception {
-        public function getErrorMessage() {
-            //error message
-            $errorMsg = 'Error on line '.$this->getLine().' in '.$this->getFile()
-            .': '.$this->getMessage();
-            return $errorMsg;
-        }
-    }
-    class InvalidControllerClass extends Exception {
-        public function getErrorMessage() {
-            //error message
-            $errorMsg = 'Error on line '.$this->getLine().' in '.$this->getFile()
-            .': '.$this->getMessage();
-            return $errorMsg;
-        }
-    }
+    include("./exceptions.php");
 
     class Database {
         public $query;
@@ -135,6 +96,12 @@
             $directory = "../views/".$name.".php"; //Fit/format view directory
             if (!file_exists($directory)) {
                 throw new ViewNotFound("File or directory not found for view!");
+            }
+            foreach ($data as $_restblaze_key_=>$_restblaze_value_) {
+                if (is_numeric($_restblaze_key_)) {
+                    throw new InvalidRouteData("Invalid parameter used for route data!");
+                }
+                $$_restblaze_key_ = $_restblaze_value_;
             }
             include($directory); //Include view and pass data
         }
