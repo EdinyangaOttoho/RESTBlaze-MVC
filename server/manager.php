@@ -1,6 +1,8 @@
 <?php
     
     file_put_contents($_SERVER["DOCUMENT_ROOT"]."/.htaccess", "RewriteEngine On");
+
+    include($_SERVER["DOCUMENT_ROOT"]."/server/exceptions.php");
     
     $named_routes = [];
     $unnamed_routes = [];

@@ -7,6 +7,14 @@
             return $errorMsg;
         }
     }
+    class InvalidURLFormatting extends Exception {
+        public function getErrorMessage() {
+            //error message
+            $errorMsg = 'Error on line '.$this->getLine().' in '.$this->getFile()
+            .': '.$this->getMessage();
+            return $errorMsg;
+        }
+    }
     class InvalidRedirectPointer extends Exception {
         public function getErrorMessage() {
             //error message
