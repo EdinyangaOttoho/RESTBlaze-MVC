@@ -74,17 +74,6 @@
             $this->query = mysqli_query($this->db, $str);
             return $this->query;
         }
-        public function count() {
-            return mysqli_num_rows($this->query);
-        }
-        public function results() {
-            $results = [];
-            while ($r = mysqli_fetch_array($this->query)) {
-                $row = (object) $r;
-                array_push($results, $row);
-            }
-            return $results;
-        }
     }
 
     $db = new Database();
@@ -154,12 +143,24 @@
             throw new InvalidControllerClass("No such class $class!");
         }
         $controller = new $class(); //create class instance of controller
+
+        $input = json_decode(file_get_contents("php://input"));
         
         if ($method == "post") {
-            $controller->request = (object) $_POST;
+            if (count($_POST) == 0) {
+                $controller->request = (object) $input;
+            }
+            else {
+                $controller->request = (object) $_POST;
+            }
         }
         else {
-            $controller->request = (object) $_GET;
+            if (count($_GET) == 0) {
+                $controller->request = (object) $input;
+            }
+            else {
+                $controller->request = (object) $_GET;
+            }
         }
 
         $controller->files = $_FILES;
