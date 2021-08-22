@@ -60,7 +60,7 @@
                         $index = strpos($x, "?");
                         
                         $start = substr($x, 0, $index)."'";
-                        $mid = mysqli_real_escape_string($db, $y[$cnt]);
+                        $mid = htmlspecialchars(mysqli_real_escape_string($db, $y[$cnt]));
                         $end = "'".substr($x, $index+1, strlen($x)-$index);
 
                         $complete = $start.$mid.$end;
