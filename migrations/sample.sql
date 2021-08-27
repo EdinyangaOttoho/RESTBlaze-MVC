@@ -1,0 +1,2 @@
+-- This is a sample SQL migration file for a table
+-- INSERT INTO table (field1, field2, field3) VALUES ('value1', 'value2', 'value3');

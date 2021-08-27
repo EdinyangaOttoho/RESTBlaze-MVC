@@ -1,7 +1,7 @@
 <?php
     class Env {
         public function __construct() {
-            $env = fopen("../.env", "r");
+            $env = fopen($_SERVER["DOCUMENT_ROOT"]."/.env", "r");
             while (!feof($env)) {
                 $result = fgets($env);
                 $key_value_pair = explode("=", trim($result));
