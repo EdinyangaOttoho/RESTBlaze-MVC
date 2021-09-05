@@ -135,7 +135,7 @@ This was shown earlier, but is done so once again for quick access.
 
 ## Foot notes
 RESTBlaze configures the .htaccess file of your app to suit its functionality and it would not be recommended to edit or modify your .htaccess file as it could lead to breaks in your project.
-Make sure to run launcher.php any time a route is added or removed from your app.
+Make sure to run launcher.php any time a route is added or removed from your app or in order for migrations to be made.
 
 ## Contributing
 RESTBlaze is open to contributions. Feel free to make requests or contact me via +2349122455484 most preferably on WhatsApp. Your PRs are welcome! If any issue is discovered, please do well to open an issue as soon as possible so it gets fixed.
