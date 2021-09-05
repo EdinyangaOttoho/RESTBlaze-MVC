@@ -80,7 +80,7 @@ When a view is put into a folder, say /views/dashboard/pages, it can be accessed
 $this->view("profile.page.home");
 ```
 A view would ideally look like this:
-```php
+```
 <!DOCTYPE html>
 <html>
 <head>
