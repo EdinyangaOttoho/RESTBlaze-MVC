@@ -2,7 +2,7 @@
 A lightweight MVC for creating REST APIs and/or web applications with ease and speed (not so different from the regular VanillaPHP).
 
 ## Installation
-For now, RESTBlaze can be downloaded by cloning this repository as is and getting to work once done. In an additional note, you need to be making use of a virtual host as provided by Laragon or equivalent in order to run the project. Laragon can be downloaded from https://laragon.net/downloads. Once downloaded, you can get started building your cool app.
+For now, RESTBlaze can be downloaded by cloning this repository as is and getting to work once done. In an additional note, you need to be making use of a virtual host as provided by Laragon or equivalent in order to run the project. Laragon can be downloaded from https://laragon.org/download/index.html. Once downloaded, you can get started building your cool app.
 
 ## Usage
 RESTBlaze, like every other PHP framework, has routes and a .env file for setting environment variables. This makes it easy to configure params globally for your app. For every change in the app's routes, you need to reconfigure the framework's engine by running the launcher.php file in the root folder of the framework either using the browser directly or by shell as shown:
