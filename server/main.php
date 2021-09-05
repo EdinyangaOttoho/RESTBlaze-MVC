@@ -1,5 +1,8 @@
 <?php
-
+    if (!isset($_GET["restblaze_method"]) || !isset($_GET["restblaze_func"]) || !isset($_GET["restblaze_opts"]) ) {
+        http_response_code(403);
+        die;
+    }
     $named_routes = [];
     $unnamed_routes = [];
 
